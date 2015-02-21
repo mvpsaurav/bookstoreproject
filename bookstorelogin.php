@@ -1,7 +1,7 @@
 <?php session_start();
 
 // Check if the user has logged in
-if( !empty($_SESSION) ){
+if( !empty($_SESSION['username']) ){
   header("location:bookstoremain.php");
 }
 ?>
@@ -22,30 +22,47 @@ if( !empty($_SESSION) ){
 </head>
 <body>
 <div align='center'>
-<h2>Bookstore: Log In or Create an Account</h2>
+<h2></h2>
 </div>
 <!--login format courtesy of getbootstrap.com-->
+<div class=''>
 <div class='container'>
-
-<div class='col-xs-6'>
-<form class='form-signin' name='login' id='login' method='post' action='bookstoreverify.php' onsubmit='return validateLogin();'>
-<h2 class='form-signin-heading'>Log In</h2>
-<input type='email' class='form-control' id='mainusermail' placeholder='Email' name='mainusermail'>
-<input type='password' class='form-control' id='mainpassword' placeholder='Password' name='mainpassword'>
+<?php
+if (!empty($_SESSION['error']))
+{
+	echo "<div class='container error'><div class='alert alert-danger'>".$_SESSION['error']."</div></div><br>";
+	$_SESSION['error'] = '';
+}
+?>
+<div class='col-md-4'>
+<div class='panel panel-default'>
+<div class='panel-heading'><h3 class='panel-title'><strong>Log In</strong></h2></div>
+<form role='form' class='form-signin' name='login' id='login' method='post' action='bookstoreverify.php' onsubmit='return validateLogin();'>
+<div class='panel-body'>
+<div class='form-group'><input type='email' class='form-control input-sm chat-input' id='mainusermail' placeholder='Email' name='mainusermail'></div>
+<div class='form-group'><input type='password' class='form-control input-sm chat-input' id='mainpassword' placeholder='Password' name='mainpassword'></div>
 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
 </div>
+</div>
+</div>
 
-<div class='col-xs-6'>
+<div class='col-md-4'>
+<div class='panel panel-default'>
+<div class='panel-heading'><h3 class='panel-title'><strong>Sign Up</strong></h2></div>
 <form class='form-signin' name='register' id='register' method='post' action='bookstoreregister.php' onsubmit='return validateRegistration();'>
-<h2 class='form-signin-heading'>Sign Up</h2>
-<input type='email' class='form-control' id='usermail' placeholder='Email' name='usermail'>
-<input type='password' class='form-control' id='password' placeholder='Password' name='password'>
-<input type='password' class='form-control' id='checkpassword' placeholder='Reenter Password' name='checkpassword'>
+<div class='panel-body'>
+<div class='form-group'><input type='email' class='form-control input-sm chat-input' id='usermail' placeholder='Email' name='usermail'></div>
+<div class='form-group'><input type='password' class='form-control input-sm chat-input' id='password' placeholder='Password' name='password'></div>
+<div class='form-group'><input type='password' class='form-control input-sm chat-input' id='checkpassword' placeholder='Reenter Password' name='checkpassword'></div>
 <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>
 </div>
+</div>
+</div>
 
+
+</div>
 </div>
 </body>
 </html>

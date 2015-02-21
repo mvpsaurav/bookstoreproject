@@ -1,4 +1,5 @@
 <?php
+session_start();
 $usermail = $_POST['usermail'];
 $password = $_POST['password'];
 $encpassword = md5($password); //create md5 hash of password
