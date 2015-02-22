@@ -22,6 +22,7 @@ if ($count == 1)
 }
 else
 {
+	$_SESSION['account'] = '';
 	$_SESSION['error'] = "Error! Wrong username and password combination!";
 	header("location:bookstorelogin.php");
 }

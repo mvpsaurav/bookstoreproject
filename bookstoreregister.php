@@ -13,4 +13,6 @@ $ismod = false;
 $newuser = "insert into accounts(ismoderator,usermail,password) values('$ismod','$usermail','$encpassword');";
 mysql_query($newuser)or die('error submitting to database: '.mysql_error());
 mysql_close($con);
+$_SESSION['error'] = '';
+$_SESSION['account'] = 'Your account has been created!';
 header("location:bookstorelogin.php");

@@ -43,13 +43,29 @@ $result2 = mysql_query($reviews);
 
 <p>Reviews for <?php echo $title;?></p>
 <?php
-while ($reviewrow = mysql_fetch_assoc($result2)
+while ($reviewrow = mysql_fetch_assoc($result2))
 {
 	echo "<p>".$reviewrow['review']."</p>";
 	echo "<p>".$reviewrow['score']."/10</p>";
 	echo "<small>By ".$reviewrow['usermail']." on ".$reviewrow['postdate']."</small>";
 }
 ?>
+<form class='form-control' id='comment' method='post'>
+<textarea class='form-control' name='review'></textarea>
+<select class="form-control">
+    <option value="one">1</option>
+    <option value="two">2</option>
+    <option value="three">3</option>
+    <option value="four">4</option>
+    <option value="five">5</option>
+    <option value="one">6</option>
+    <option value="two">7</option>
+    <option value="three">8</option>
+    <option value="four">9</option>
+    <option value="five">10</option>
+</select>
+<button class='btn btn-default' type='submit'>Submit</button>
+</form>
 </div>
 </div>
 

@@ -33,6 +33,11 @@ if (!empty($_SESSION['error']))
 	echo "<div class='container error'><div class='alert alert-danger'>".$_SESSION['error']."</div></div><br>";
 	$_SESSION['error'] = '';
 }
+if (!empty($_SESSION['account']))
+{
+	echo "<div class='container error'><div class='alert alert-success'>".$_SESSION['account']."</div></div><br>";
+	$_SESSION['account'] = '';
+}
 ?>
 <div class='col-md-4'>
 <div class='panel panel-default'>
