@@ -9,7 +9,7 @@ primary key (usermail)
 );
 
 create table if not exists books(
-isbn int not null, 
+isbn varchar(20) not null, 
 title varchar(30) not null,
 image varchar(100) not null,
 author varchar(30) not null, 
@@ -22,7 +22,7 @@ primary key(isbn)
 
 create table if not exists account_book(
 usermail varchar(30) not null,
-booknumber int not null,
+booknumber varchar(30) not null,
 score int not null, 
 review text(140) not null,
 postdate datetime not null,
