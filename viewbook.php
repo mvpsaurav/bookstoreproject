@@ -10,7 +10,7 @@ if (!$con)
 }
 mysql_select_db('bookstore')or die('Cannot select database bookstore');
 $title = $_POST['title'];
-$books = "select title, author, image, category, summary, price, dateadded from books where title='".$title."' limit 1;";
+$books = "select isbn, title, author, image, category, summary, price, dateadded from books where title='".$title."' limit 1;";
 $result = mysql_query($books)or die("Error fetching data".mysql_error());
 $bookrow = mysql_fetch_assoc($result);	//create associative array from results based on column name
 $reviews = "select usermail, title, score, review, postdate from books, account_book where books.isbn=account_book.booknumber and title='$title' order by postdate;";
@@ -45,16 +45,18 @@ $result2 = mysql_query($reviews);
 <?php
 while ($reviewrow = mysql_fetch_assoc($result2))
 {
-	echo "<p>".$reviewrow['review']."</p>";
-	echo "<p>".$reviewrow['score']."/10</p>";
-	echo "<small>By ".$reviewrow['usermail']." on ".$reviewrow['postdate']."</small>";
+	echo "<ul>".$reviewrow['review']."</ul>";
+	echo "<ul>This user gave this book a score of ".$reviewrow['score']."/10</ul>";
+	echo "<ul>By ".$reviewrow['usermail']." on ".$reviewrow['postdate']."</ul><br>";
 }
 mysql_close($con);
 ?>
+<br><br><br>
 <label>Submit a review</label>
-<form id='comment' method='post'>
-<textarea class='form-control' name='review'></textarea>
-<select class="form-control">
+<form id='comment' method='post' action='bookstorereview.php'>
+<textarea class='form-control' name='review' id='review'></textarea>
+<label for='score'>Score</label>
+<select id='score' name='score'>
     <option value="one">1</option>
     <option value="two">2</option>
     <option value="three">3</option>
@@ -66,6 +68,7 @@ mysql_close($con);
     <option value="four">9</option>
     <option value="five">10</option>
 </select>
+<?php echo "<input type='hidden' name='isbn' id='isbn' value='".$bookrow['isbn']."'>"; ?>
 <button class='btn btn-default' type='submit'>Submit</button>
 </form>
 </div>

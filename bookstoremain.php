@@ -21,20 +21,12 @@ if ($_SESSION['usermail'] == '')
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- external css-->
 <link href="css/bookstore.css" rel="stylesheet" />
-<style type="text/css" role='complementary'>
-.shoppingcart {
-	width:500px;
-	height:500px;
-	padding:10px;
-	border:1px solid #aaaaaa;
-}
-</style>
 <script src="js/bookstore.js"></script>
 </head>
 <body>
 <div class='jumbotron'>
 <div class='container'>
-<div class='col-xs-6'>
+<div>
 <?php
 $con = mysql_connect('localhost','root','');
 if (!$con)
@@ -56,8 +48,8 @@ while ($books = mysql_fetch_assoc($result))
 mysql_close($con);
 ?>
 </div>
-<div class='col-xs-6'>
-<p>Shopping Cart</p>
+<div>
+<label>Shopping Cart will go here</label>
 <div class='shoppingcart' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <a href='bookstorelogout.php'>Logout</a>
 </div>
