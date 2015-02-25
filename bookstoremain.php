@@ -5,7 +5,7 @@ if ($_SESSION['usermail'] == '')
 {
 	header("location:bookstorelogin.php");
 }
-
+$_SESSION['title'] = '';
 //echo "Your username is ".$_SESSION['usermail']."<br>";
 ?>
 <html>

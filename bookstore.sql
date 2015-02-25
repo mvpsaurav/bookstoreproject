@@ -16,7 +16,7 @@ primary key (usermail)
 
 create table books(
 isbn varchar(20) not null,
-title varchar(30) not null,
+title varchar(75) not null,
 image varchar(100) not null,
 author varchar(30) not null,
 category varchar(30) not null,
@@ -31,15 +31,23 @@ into table books
 fields terminated by ','
 ignore 1 lines (isbn, title, image, author, category, summary, @price, @datevar) SET price = 19.99, dateadded = CURDATE();
 
-create table account_book(
+create table review(
 usermail varchar(30) not null,
 booknumber varchar(20) not null,
 score int not null,
 review text(140) not null,
 postdate datetime not null,
-wishlist boolean not null,
-primary key (usermail, booknumber),
+primary key (usermail,postdate),
 foreign key (usermail) references accounts(usermail),
+foreign key (booknumber) references books(isbn)
+);
+
+create table wishlist(
+usermail varchar(30) not null,
+booknumber varchar(20) not null,
+wishlist boolean not null,
+primary key(usermail, booknumber),
+foreign key (usermail) references accounts(usermail).
 foreign key (booknumber) references books(isbn)
 );
 

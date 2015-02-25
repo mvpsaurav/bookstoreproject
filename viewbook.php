@@ -10,10 +10,11 @@ if (!$con)
 }
 mysql_select_db('bookstore')or die('Cannot select database bookstore');
 $title = $_POST['title'];
+$_SESSION['title'] = $title;
 $books = "select isbn, title, author, image, category, summary, price, dateadded from books where title='".$title."' limit 1;";
 $result = mysql_query($books)or die("Error fetching data".mysql_error());
 $bookrow = mysql_fetch_assoc($result);	//create associative array from results based on column name
-$reviews = "select usermail, title, score, review, postdate from books, account_book where books.isbn=account_book.booknumber and title='$title' order by postdate;";
+$reviews = "select usermail, title, score, review, postdate from books, review where books.isbn=review.booknumber and title='$title' order by postdate;";
 $result2 = mysql_query($reviews);
 ?>
 <html>
@@ -71,6 +72,7 @@ mysql_close($con);
 <?php echo "<input type='hidden' name='isbn' id='isbn' value='".$bookrow['isbn']."'>"; ?>
 <button class='btn btn-default' type='submit'>Submit</button>
 </form>
+<a href='bookstoremain.php'><-Back</a>
 </div>
 </div>
 

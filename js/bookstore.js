@@ -45,3 +45,8 @@ function getTitle(s) {
     var incre = "myForm"+s;
     document.getElementById(incre).submit();
 }
+
+function returnToBook()
+{
+	document.getElementById('returnform').submit();
+}

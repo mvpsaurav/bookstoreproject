@@ -14,8 +14,13 @@ $wishlist = false;
 $isbn = $_POST['isbn'];
 $score = $_POST['score'];
 $review = $_POST['review'];
-$new = "insert into account_book(booknumber,postdate,review,score,usermail,wishlist) values('$isbn',NOW(),'$review','$score','$usermail','$wishlist');";
-mysql_query($new)or die('error submitting to database'.mysql_error());
+$new = "insert into review(booknumber,postdate,review,score,usermail) values('$isbn',NOW(),'$review','$score','$usermail');";
+mysql_query($new)or die('error submitting to database: '.mysql_error());
 mysql_close($con);
-header('location:viewbook.php');
+//resubmit title value over to viewbook via post to redirect to correct book
+$title = $_SESSION['title'];
+$_SESSION['title'] = '';
+echo "<script src='js/bookstore.js'></script>";
+echo "<form method='post' action='viewbook.php' id='returnform'><input name='title' type='hidden' value='".$title."'></form>";
+echo "<div onload='returnToBook();'>";
 ?>
