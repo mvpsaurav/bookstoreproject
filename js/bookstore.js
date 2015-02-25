@@ -25,3 +25,23 @@ function validateRegistration()
 		return false;
 	}
 }
+
+//drag and drop from w3schools
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
+function getTitle(s) {
+    var incre = "myForm"+s;
+    document.getElementById(incre).submit();
+}

@@ -38,3 +38,10 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.shoppingcart {
+	width:350px;
+	height:70px;
+	padding:10px;
+	border:1px solid #aaaaaa;
+}

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!$_SESSION['username']){
+if(!$_SESSION['usermail']){
 	header("location:bookstorelogin.php");
 }
 $con = mysql_connect('localhost','root','');
@@ -9,10 +9,10 @@ if (!$con)
 	die("Could not connect to database".mysql_error());
 }
 mysql_select_db('bookstore')or die('Cannot select database bookstore');
-$itle = $_POST['title'];
-$books = "select title, author, image, category, summary, price, dateadded from books where title='$title' limit 1;";
-$results = mysql_query($books);
-$bookrow = $results->fetch_assoc();	//create associative array from results based on column name
+$title = $_POST['title'];
+$books = "select title, author, image, category, summary, price, dateadded from books where title='".$title."' limit 1;";
+$result = mysql_query($books)or die("Error fetching data".mysql_error());
+$bookrow = mysql_fetch_assoc($result);	//create associative array from results based on column name
 $reviews = "select usermail, title, score, review, postdate from books, account_book where books.isbn=account_book.booknumber and title='$title' order by postdate;";
 $result2 = mysql_query($reviews);
 ?>
@@ -36,10 +36,10 @@ $result2 = mysql_query($reviews);
 <div class='jumbotron'>
 <h1><?php echo $title; ?></h1>
 <p class='lead'>By <?php echo $bookrow['author']."  Category: ".$bookrow['category']; ?></p>
-<?php echo "<img src='".$bookrow['image']."'>";?>
+<?php echo "<img src='img/".$bookrow['image']."' width='450' height='600'>";?>
 <p><?php echo $bookrow['summary'];?></p>
-<small>$<?php $bookrow['price'];?></small>
-<small>Added on <?php $bookrow['dateadded'];?></small>
+<p>$<?php echo $bookrow['price'];?></p>
+<small>Added on <?php echo $bookrow['dateadded'];?></small>
 
 <p>Reviews for <?php echo $title;?></p>
 <?php
@@ -49,8 +49,10 @@ while ($reviewrow = mysql_fetch_assoc($result2))
 	echo "<p>".$reviewrow['score']."/10</p>";
 	echo "<small>By ".$reviewrow['usermail']." on ".$reviewrow['postdate']."</small>";
 }
+mysql_close($con);
 ?>
-<form class='form-control' id='comment' method='post'>
+<label>Submit a review</label>
+<form id='comment' method='post'>
 <textarea class='form-control' name='review'></textarea>
 <select class="form-control">
     <option value="one">1</option>

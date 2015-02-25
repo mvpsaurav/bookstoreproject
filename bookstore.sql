@@ -29,7 +29,6 @@ primary key(isbn)
 load data infile 'BookList.txt'
 into table books
 fields terminated by ','
-optionally enclosed by '"'
 ignore 1 lines (isbn, title, image, author, category, summary, @price, @datevar) SET price = 19.99, dateadded = CURDATE();
 
 create table account_book(
