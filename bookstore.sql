@@ -47,7 +47,7 @@ usermail varchar(30) not null,
 booknumber varchar(20) not null,
 wishlist boolean not null,
 primary key(usermail, booknumber),
-foreign key (usermail) references accounts(usermail).
+foreign key (usermail) references accounts(usermail),
 foreign key (booknumber) references books(isbn)
 );
 
