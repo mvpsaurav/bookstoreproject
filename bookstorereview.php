@@ -20,7 +20,17 @@ mysql_close($con);
 //resubmit title value over to viewbook via post to redirect to correct book
 $title = $_SESSION['title'];
 $_SESSION['title'] = '';
-echo "<script src='js/bookstore.js'></script>";
-echo "<form method='post' action='viewbook.php' id='returnform'><input name='title' type='hidden' value='".$title."'></form>";
-echo "<div onload='returnToBook();'>";
 ?>
+<head>
+<script>
+window.onload = function(){
+  document.forms['returnform'].submit();
+
+}
+</script>
+</head>
+<body>
+<?php
+echo "<form method='post' action='viewbook.php' name='returnform' id='returnform'><input name='title' type='hidden' value='".$title."'></form>";
+?>
+</body>
