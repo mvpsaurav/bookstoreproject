@@ -133,7 +133,7 @@ $_SESSION['title'] = '';
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Shopping Cart</a>
                     </li>
 					<li>
-						<a href="logout.php">Log Out</a>
+						<a href="bookstorelogout.php">Log Out</a>
 					</li>
                 </ul>
             </div>
