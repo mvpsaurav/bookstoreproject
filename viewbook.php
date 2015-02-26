@@ -121,7 +121,7 @@ $result2 = mysql_query($reviews);
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="bookstoremain.php">Home</a>
                     </li>
                     <li>
                         <a href="#">Wishlist</a>
@@ -130,7 +130,7 @@ $result2 = mysql_query($reviews);
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Shopping Cart</a>
                     </li>
 					<li>
-						<a href="logout.php">Log Out</a>
+						<a href="bookstorelogout.php">Log Out</a>
 					</li>
                 </ul>
             </div>
@@ -155,7 +155,7 @@ $result2 = mysql_query($reviews);
 <div class='jumbotron'>
 <h1><?php echo $title; ?></h1>
 <p class='lead'>By <?php echo $bookrow['author']."  Category: ".$bookrow['category']; ?></p>
-<?php echo "<img src='img/".$bookrow['image']."' width='450' height='600'>";?>
+<?php echo "<div id='".$title."'draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$bookrow['image']."' width='450' height='600'></div>";?>
 <p><?php echo $bookrow['summary'];?></p>
 <p>$<?php echo $bookrow['price'];?></p>
 <small>Added on <?php echo $bookrow['dateadded'];?></small>
