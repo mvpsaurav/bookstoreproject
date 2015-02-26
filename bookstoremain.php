@@ -34,7 +34,7 @@ if (!$con)
 	die("Could not connect to database".mysql_error());
 }
 mysql_select_db('bookstore')or die('Cannot select database bookstore');
-$getbooks = "Select title, image from books order by dateadded";
+$getbooks = "Select title, image, price from books order by dateadded";
 $result = mysql_query($getbooks)or die("Error querying database: ".mysql_error());
 $incre = 1;
 while ($books = mysql_fetch_assoc($result))
@@ -42,7 +42,8 @@ while ($books = mysql_fetch_assoc($result))
 	echo "<form action='viewbook.php' method='POST' id = 'myForm".$incre."' name = 'myForm".$incre."'>";
 	echo "<input type = 'hidden' value = '".$books['title']."' name = 'title'></form> ";
 	echo "<p class='lead'><a href='javascript: getTitle(".$incre.")'>".$books['title']."</a></p>";
-	echo "<div draggable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
+	echo "<div id= '".$books['title']."' draggable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
+	echo "<p>Price: $".$books['price']."</p>";
 	$incre++;
 }
 mysql_close($con);
