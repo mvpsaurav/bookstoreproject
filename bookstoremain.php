@@ -181,7 +181,6 @@ $_SESSION['title'] = '';
 			</div>
 		</div>
 	</div>
-	</div>
 	</body>
 	
 	<footer>
@@ -209,4 +208,5 @@ $_SESSION['title'] = '';
 		</script>
 		
 	</footer>
+</div>
 </html>
