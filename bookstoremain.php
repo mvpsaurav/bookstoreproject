@@ -173,17 +173,14 @@ $_SESSION['title'] = '';
 					echo "<p class='lead'><a href='javascript: getTitle(".$incre.")'>".$books['title']."</a></p>";
 					echo "<div id= '".$books['title']."' draggable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
 					echo "<p>Price: $".$books['price']."</p>";
-					$incre++;
+				$incre++;
 				}
 				mysql_close($con);
 				?>
 				</div>
 			</div>
 		</div>
-	</div>
-	</body>
-	
-	<footer>
+			<footer>
 		<div class="container">
         <hr>
             <div class="row">
@@ -208,5 +205,7 @@ $_SESSION['title'] = '';
 		</script>
 		
 	</footer>
-</div>
+		</div>
+		</div>
+	</body>
 </html>
