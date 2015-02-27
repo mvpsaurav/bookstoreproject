@@ -115,7 +115,7 @@ $result2 = mysql_query($reviews);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">Bookmaster</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -158,8 +158,9 @@ $result2 = mysql_query($reviews);
 <?php echo "<div id='".$title."'draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$bookrow['image']."' width='450' height='600'></div>";?>
 <p><?php echo $bookrow['summary'];?></p>
 <p>$<?php echo $bookrow['price'];?></p>
-<small>Added on <?php echo $bookrow['dateadded'];?></small>
-
+<small>Added on <?php echo $bookrow['dateadded'];?></small><br>
+<button type='button' class='btn btn-info'>Add to Wishlist</button>
+<br><br>
 <p>Reviews for <?php echo $title;?></p>
 <?php
 while ($reviewrow = mysql_fetch_assoc($result2))

@@ -1,3 +1,5 @@
+var xmlhttp;
+
 function validateLogin()
 {
 	var usermail = document.getElementById('mainusermail').value;
@@ -52,3 +54,26 @@ $(document).ready(function(){
 	$("body").css("display", "none");
 	$("body").fadeIn(1000);
 });
+
+function getXMLHttpObject()
+{
+	if (window.XMLHttpRequest)
+	{
+		xmlHttp = new XMLHttpRequest(); //good browsers
+	}
+	else 
+	{
+		xmlHttp = new ActiveXObject("Microsoft.XMLHTTP"); // IE
+	}
+	return xmlHttp;
+}
+
+function addto(isbn, user)
+{
+	xmlhttp = getXMLHttpObject(); //create
+	var params = "isbn="+isbn+"&user="+user+"&sid="+Math.random();
+	xmlhttp.open('POST',"bookstoreadd.php",true);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlhttp.send(params);
+	alert('Sent');
+}

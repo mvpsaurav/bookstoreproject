@@ -6,6 +6,8 @@ if ($_SESSION['usermail'] == '')
 	header("location:bookstorelogin.php");
 }
 $_SESSION['title'] = '';
+$usermail = $_SESSION['usermail'];
+//$usermail = htmlentities($usermail);
 //echo "Your username is ".$_SESSION['usermail']."<br>";
 ?>
 <html>
@@ -118,7 +120,7 @@ $_SESSION['title'] = '';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">Bookmaster</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -163,16 +165,19 @@ $_SESSION['title'] = '';
 					die("Could not connect to database".mysql_error());
 				}
 				mysql_select_db('bookstore')or die('Cannot select database bookstore');
-				$getbooks = "Select title, image, price from books order by dateadded";
+				$getbooks = "Select isbn, title, image, price from books order by dateadded";
 				$result = mysql_query($getbooks)or die("Error querying database: ".mysql_error());
 				$incre = 1;
 				while ($books = mysql_fetch_assoc($result))
 				{
+					$isbn = $books['isbn'];
 					echo "<form action='viewbook.php' method='POST' id = 'myForm".$incre."' name = 'myForm".$incre."'>";
 					echo "<input type = 'hidden' value = '".$books['title']."' name = 'title'></form> ";
 					echo "<p class='lead'><a href='javascript: getTitle(".$incre.")'>".$books['title']."</a></p>";
 					echo "<div id= '".$books['title']."' draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
 					echo "<p>Price: $".$books['price']."</p>";
+					echo "<button class='btn btn-info' onclick='addto($isbn,\"$usermail\")'>Add to Wishlist</button><br><br>";
+					echo "<script>$('#edit_errors').html('<h3><em><font color=\"red\">Please Correct Errors Before Proceeding</font></em></h3>')</script>";
 				$incre++;
 				}
 				mysql_close($con);
