@@ -10,6 +10,7 @@ echo $_POST['user'];
 $isbn = $_POST['isbn'];
 $usermail = $_POST['user'];
 $inserter = "insert into wishlist(booknumber, usermail, wishlist) values('$isbn','$usermail','$wish');";
+echo "<p>".$inserter."</p>";
 mysql_query($inserter)or die('Error submitting data: '.mysql_error());
 mysql_close($con);
 ?>

@@ -68,7 +68,7 @@ function getXMLHttpObject()
 	return xmlHttp;
 }
 
-function addto(isbn, user)
+function addto(isbn, user, title)
 {
 	xmlhttp = getXMLHttpObject(); //create
 	var params = "isbn="+isbn+"&user="+user+"&sid="+Math.random();
@@ -76,4 +76,7 @@ function addto(isbn, user)
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(params);
 	alert('Sent');
+	var newbook = document.createElement('label');
+	newbook.innerHTML = title;
+	document.getElementById('wishlistbar').appendChild(newbook);
 }

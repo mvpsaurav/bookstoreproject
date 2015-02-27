@@ -159,9 +159,10 @@ $usermail = $_SESSION['usermail'];
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					echo "<label>".$eachbook['title']."</label>";
+					echo "<label>".$eachbook['title']."</label><br>";
 				}
 				?>
+				<div id='wishlistbar'></div>
             </ul>
         </div>
 	<div id="page-content-wrapper">

@@ -169,9 +169,10 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					echo "<label>".$eachbook['title']."</label>";
+					echo "<label>".$eachbook['title']."</label><br>";
 				}
 				?>
+				<div id='wishlistbar'></div>
             </ul>
         </div>
 	<div id="page-content-wrapper">
@@ -186,13 +187,14 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				while ($books = mysql_fetch_assoc($result))
 				{
 					$isbn = $books['isbn'];
+					$title = $books['title'];
 					echo "<form action='viewbook.php' method='POST' id = 'myForm".$incre."' name = 'myForm".$incre."'>";
 					echo "<input type = 'hidden' value = '".$books['title']."' name = 'title'></form> ";
 					echo "<p class='lead'><a href='javascript: getTitle(".$incre.")'>".$books['title']."</a></p>";
 					echo "<div id= '".$books['title']."' draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
 					echo "<p>Price: $".$books['price']."</p>";
-					echo "<button class='btn btn-info' onclick='addto($isbn,\"$usermail\")'>Add to Wishlist</button><br><br>";
-					echo "<script>$('#edit_errors').html('<h3><em><font color=\"red\">Please Correct Errors Before Proceeding</font></em></h3>')</script>";
+					echo "<button class='btn btn-info' onclick='addto(\"$isbn\",\"$usermail\",\"$title\")'>Add to Wishlist</button><br><br>";
+					//echo "<script>$('#edit_errors').html('<h3><em><font color=\"red\">Please Correct Errors Before Proceeding</font></em></h3>')</script>";
 				$incre++;
 				}
 				?>
