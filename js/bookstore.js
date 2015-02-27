@@ -73,7 +73,7 @@ function allowDrop(ev) {
 
 function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
-	ev.dataTransfer.setData('name', ev.target.name);
+	//ev.dataTransfer.setData('name', ev.target.name);
 }
 
 function drop(ev) {

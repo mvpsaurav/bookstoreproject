@@ -127,16 +127,15 @@ $usermail = $_SESSION['usermail'];
 	<div id="wrapper" class='toggled'>
 	<div id="wrapper1">
 	<!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
             <ul class="sidebar-nav">
-                <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<br>
 				<ul id="sortable" class="ui-state-highlight">
+				<li><h3>Shopping Cart</h3></li>
 				<?php
 				if(isset($_SESSION['cart']))
 				{
 					foreach($_SESSION['cart'] as $value) {
-						echo "<li><img src=img/".$value."></li>";
+						echo "<li><img src=img/".$value." width='150' height='200'></li>";
 					}
 				}
 				?>
@@ -145,8 +144,8 @@ $usermail = $_SESSION['usermail'];
             </ul>
         </div>
 		<div id="sidebar-wrapper1">
+		<li><h3>Wishlist</h3> </li>
             <ul class="sidebar-nav1">
-            <p>Your Wishlist</p>
                 <?php
 				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
 				$list = mysql_query($wish)or die('No: '.mysql_error());
@@ -168,7 +167,7 @@ $usermail = $_SESSION['usermail'];
 $isbn = $bookrow['isbn'];
 ?>
 <p class='lead'>By <?php echo $bookrow['author']."  Category: ".$bookrow['category']; ?></p>
-<?php echo "<div id='".$title."'draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$bookrow['image']."' width='450' height='600'></div>";?>
+<?php echo "<div id='".$bookrow['image']."'draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$bookrow['image']."' width='150' height='200' id='viewImage'></div>";?>
 <p><?php echo $bookrow['summary'];?></p>
 <p>$<?php echo $bookrow['price'];?></p>
 <small>Added on <?php echo $bookrow['dateadded'];?></small><br>

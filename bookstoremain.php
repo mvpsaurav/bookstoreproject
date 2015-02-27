@@ -137,16 +137,15 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 	<div id="wrapper" class='toggled'>
 	<div id="wrapper1" class=''>
 	<!-- Sidebar -->
-        <div id="sidebar-wrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h3>Shopping Cart</h3>
-            <ul class="sidebar-nav">
-				<br>
-				<ul id="sortable" class="ui-state-highlight">
+        <div id="sidebar-wrapper" > 
+            <ul class="sidebar-nav" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<ul id="sortable" class="ui-state-highlight" >
+				<li droppable='false'><h3>Shopping Cart</h3></li>
 				<?php
 				if(isset($_SESSION['cart']))
 				{
 					foreach($_SESSION['cart'] as $value) {
-						echo "<li><img src=img/".$value."></li>";
+						echo "<li droppable='false'><img src=img/".$value." width='150' height='200'></li>";
 					}
 				}
 				?>
@@ -155,7 +154,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
             </ul>
         </div>
 		<div id="sidebar-wrapper1">
-		<h3>Wishlist</h3>
+		<li><h3>Wishlist</h3></li>
             <ul class="sidebar-nav1">
 				<?php
 				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
@@ -174,7 +173,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 			<div class='container'>
 				<div align='center'>
 				<?php
-				$getbooks = "Select isbn, title, image, price from books order by dateadded";
+				$getbooks = "Select isbn, title, image, price, category from books order by dateadded";
 				$result = mysql_query($getbooks)or die("Error querying database: ".mysql_error());
 				$incre = 1;
 				while ($books = mysql_fetch_assoc($result))
@@ -185,6 +184,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 					echo "<form action='viewbook.php' method='POST' id = 'myForm".$incre."' name = 'myForm".$incre."'>";
 					echo "<input type = 'hidden' value = '".$books['title']."' name = 'title'></form> ";
 					echo "<p class='lead'><a href='javascript: getTitle(".$incre.")'>".$books['title']."</a></p>";
+					echo "<p>Category: ".$books['category']."</p>";
 					echo "<div id= '".$books['image']."' name='$title' draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
 					echo "<p>Price: $".$books['price']."</p>";
 					echo "<button class='btn btn-info' onclick='addto(\"$isbn\",\"$usermail\",\"$title\")'>Add to Wishlist</button><br><br>";
