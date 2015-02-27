@@ -29,24 +29,9 @@ if( !empty($_SESSION['username']) ){
 </head>
 
 <body>
-<div align='center'>
-<h2></h2>
-</div>
 <!--login format courtesy of getbootstrap.com-->
-<div class=''>
+<center>
 <div class='container'>
-<?php
-if (!empty($_SESSION['error']))
-{
-	echo "<div class='container error'><div class='alert alert-danger'>".$_SESSION['error']."</div></div><br>";
-	$_SESSION['error'] = '';
-}
-if (!empty($_SESSION['account']))
-{
-	echo "<div class='container error'><div class='alert alert-success'>".$_SESSION['account']."</div></div><br>";
-	$_SESSION['account'] = '';
-}
-?>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -70,8 +55,9 @@ if (!empty($_SESSION['account']))
     </nav>
 
 <center>
+<div class=''>
 
-<div class='col-md-4'>
+<div>
 <div class='panel panel-default'>
 <div class='panel-heading'><h3 class='panel-title'><strong>Log In</strong></h2></div>
 <form role='form' class='form-signin' name='login' id='login' method='post' action='bookstoreverify.php' onsubmit='return validateLogin();'>
@@ -86,7 +72,7 @@ if (!empty($_SESSION['account']))
 
 <br>
 
-<div class='col-md-4'>
+<div>
 <div class='panel panel-default'>
 <div class='panel-heading'><h3 class='panel-title'><strong>Sign Up</strong></h2></div>
 <form class='form-signin' name='register' id='register' method='post' action='bookstoreregister.php' onsubmit='return validateRegistration();'>
@@ -100,9 +86,21 @@ if (!empty($_SESSION['account']))
 </div>
 </div>
 
+</div>
 </center>
 
-</div>
+<?php
+if (!empty($_SESSION['error']))
+{
+	echo "<div class='container error'><div class='alert alert-danger'>".$_SESSION['error']."</div></div><br>";
+	$_SESSION['error'] = '';
+}
+if (!empty($_SESSION['account']))
+{
+	echo "<div class='container error'><div class='alert alert-success'>".$_SESSION['account']."</div></div><br>";
+	$_SESSION['account'] = '';
+}
+?>
 </div>
 </body>
 </html>
