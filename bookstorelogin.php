@@ -70,7 +70,7 @@ if (!empty($_SESSION['account']))
 
 <ul>
 <li>
-<div class='col-md-4' style='center'>
+<div class='col-md-4' align='center'>
 <div class='panel panel-default'>
 <div class='panel-heading'><h3 class='panel-title'><strong>Log In</strong></h2></div>
 <form role='form' class='form-signin' name='login' id='login' method='post' action='bookstoreverify.php' onsubmit='return validateLogin();'>
@@ -85,7 +85,7 @@ if (!empty($_SESSION['account']))
 </li>
 
 <li>
-<div class='col-md-4' style='center'>
+<div class='col-md-4' align='center'>
 <div class='panel panel-default'>
 <div class='panel-heading'><h3 class='panel-title'><strong>Sign Up</strong></h2></div>
 <form class='form-signin' name='register' id='register' method='post' action='bookstoreregister.php' onsubmit='return validateRegistration();'>
