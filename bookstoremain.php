@@ -129,10 +129,10 @@ $usermail = $_SESSION['usermail'];
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="#" class="btn btn-default">Wishlist</a>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle1">Wishlist</a>
                     </li>
                     <li>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Shopping Cart</a>
+                        <a href="#menu-toggle1" class="btn btn-default" id="menu-toggle">Shopping Cart</a>
                     </li>
 					<li>
 						<a href="bookstorelogout.php">Log Out</a>
@@ -164,7 +164,8 @@ $usermail = $_SESSION['usermail'];
 				<div id="tmp"></div>
             </ul>
         </div>
-	<div id="page-content-wrapper">	
+	<div id="page-content-wrapper">
+	<div id="page-content-wrapper1">	
 		<div class='jumbotron'>
 			<div class='container'>
 				<div class='col-md-4'>
@@ -228,9 +229,14 @@ $usermail = $_SESSION['usermail'];
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
 		});
+		$("#menu-toggle1").click(function(e) {
+			e.preventDefault();
+			$("#wrapper1").toggleClass("toggled");
+		});
 		</script>
 		
 	</footer>
+		</div>
 		</div>
 		</div>
 		</div>
