@@ -140,7 +140,7 @@ $usermail = $_SESSION['usermail'];
         <!-- /.container -->
     </nav>
 	<div id="wrapper" class='toggled'>
-	<div id="wrapper1" class='toggled'>
+	<div id="wrapper1">
 	<!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
