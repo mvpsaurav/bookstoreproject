@@ -129,10 +129,10 @@ $usermail = $_SESSION['usermail'];
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="#menu-toggle1" class="btn btn-default" id="menu-toggle1">Wishlist</a>
+                        <a href="#" class="btn btn-default">Wishlist</a>
                     </li>
                     <li>
-                        <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">Shopping Cart</a>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Shopping Cart</a>
                     </li>
 					<li>
 						<a href="bookstorelogout.php">Log Out</a>
@@ -224,13 +224,9 @@ $usermail = $_SESSION['usermail'];
 
 		<!-- Menu Toggle Script -->
 		<script>
-		$("#menu-toggle1").click(function(e) {
+		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
-		});
-		$("#menu-toggle2").click(function(e) {
-			e.preventDefault();
-			$("#wrapper1").toggleClass("toggled");
 		});
 		</script>
 		
