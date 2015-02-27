@@ -104,12 +104,14 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 
 		function drag(ev) {
 			ev.dataTransfer.setData("text", ev.target.id);
+			ev.dataTransfer.setData('name', ev.target.name);
 		}
 
 		function drop(ev) {
 			ev.preventDefault();
 			var data = ev.dataTransfer.getData("text");
 			ev.target.appendChild(document.getElementById(data).cloneNode(true));
+			//var x = ev.dataTransfer.getData('name');
 			
 		}
 	</script>
@@ -192,7 +194,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 					echo "<form action='viewbook.php' method='POST' id = 'myForm".$incre."' name = 'myForm".$incre."'>";
 					echo "<input type = 'hidden' value = '".$books['title']."' name = 'title'></form> ";
 					echo "<p class='lead'><a href='javascript: getTitle(".$incre.")'>".$books['title']."</a></p>";
-					echo "<div id= '".$books['title']."' draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
+					echo "<div id= '".$books['title']."' name='$title' draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
 					echo "<p>Price: $".$books['price']."</p>";
 					echo "<button class='btn btn-info' onclick='addto(\"$isbn\",\"$usermail\",\"$title\")'>Add to Wishlist</button><br><br>";
 					echo "</div>";
