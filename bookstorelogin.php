@@ -18,6 +18,13 @@ if( !empty($_SESSION['username']) ){
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link href="css/bookstore.css" rel="stylesheet" />
+<!-- external css-->
+<link href="css/bookstore.css" rel="stylesheet" />
+<script src="js/bookstore.js"></script>
+<link href="css/shop-item.css" rel="stylesheet">
+<link href="css/simple-sidebar.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/bookstore.js"></script>
 </head>
 <body>
@@ -39,6 +46,30 @@ if (!empty($_SESSION['account']))
 	$_SESSION['account'] = '';
 }
 ?>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bookmaster</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 <div class='col-md-4'>
 <div class='panel panel-default'>
 <div class='panel-heading'><h3 class='panel-title'><strong>Log In</strong></h2></div>
