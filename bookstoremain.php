@@ -144,10 +144,20 @@ $usermail = $_SESSION['usermail'];
         <!-- /.container -->
     </nav>
 	<div id="wrapper" class='toggled'>
+	<div id="wrapper1" class='toggled'>
 	<!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				<br>
+				<ul id="sortable" class="ui-state-highlight">
+				</ul>
+				<div id="tmp"></div>
+            </ul>
+        </div>
+		<div id="sidebar-wrapper1">
+            <ul class="sidebar-nav1">
+                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 				<br>
 				<ul id="sortable" class="ui-state-highlight">
 				</ul>
@@ -220,11 +230,12 @@ $usermail = $_SESSION['usermail'];
 		});
 		$("#menu-toggle2").click(function(e) {
 			e.preventDefault();
-			$("#wrapper").toggleClass("toggled");
+			$("#wrapper1").toggleClass("toggled");
 		});
 		</script>
 		
 	</footer>
+		</div>
 		</div>
 		</div>
 	</body>

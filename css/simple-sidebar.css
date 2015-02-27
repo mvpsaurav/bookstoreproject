@@ -37,6 +37,37 @@
     width: 250px;
 }
 
+#wrapper1 {
+    padding-right: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper1.toggled {
+    padding-right: 250px;
+}
+
+#sidebar-wrapper1 {
+    z-index: 1000;
+    position: fixed;
+    right: 250px;
+    width: 0;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper1.toggled #sidebar-wrapper1 {
+    width: 250px;
+}
+
 #page-content-wrapper {
     width: 100%;
     position: absolute;
@@ -46,6 +77,17 @@
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
     margin-right: -250px;
+}
+
+#page-content-wrapper1 {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper1.toggled #page-content-wrapper1 {
+    position: absolute;
+    margin-left: -250px;
 }
 
 /* Sidebar Styles */
