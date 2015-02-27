@@ -61,9 +61,6 @@ if (!empty($_SESSION['account']))
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
