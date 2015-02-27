@@ -66,3 +66,28 @@ function addto(isbn, user, title)
 	newbook.innerHTML = title;
 	document.getElementById('wishlistbar').appendChild(newbook);
 }
+
+function allowDrop(ev) {
+	ev.preventDefault();
+}
+
+function drag(ev) {
+	ev.dataTransfer.setData("text", ev.target.id);
+	ev.dataTransfer.setData('name', ev.target.name);
+}
+
+function drop(ev) {
+	ev.preventDefault();
+	var data = ev.dataTransfer.getData("text");
+	ev.target.appendChild(document.getElementById(data).cloneNode(true));
+	updoot(data);
+}
+
+function updoot(cart){
+	xmlhttp = getXMLHttpObject();
+	var params = "cart="+cart+"&sid="+Math.random();
+	xmlhttp.open('POST',"cartadd.php",true);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlhttp.send(params);
+	alert('Added to shopping cart!');
+}

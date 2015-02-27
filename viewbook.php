@@ -31,7 +31,6 @@ $usermail = $_SESSION['usermail'];
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link href="css/bookstore.css" rel="stylesheet" />
 <script src="js/bookstore.js"></script>
-<script>alert("Shopping cart cleared.");</script>
 <link href="css/shop-item.css" rel="stylesheet">
 <link href="css/simple-sidebar.css" rel="stylesheet">
 	
@@ -88,22 +87,7 @@ $usermail = $_SESSION['usermail'];
 			min-height: 256px;
 		}
 	</style>
-	<script type="text/JavaScript">
-		function allowDrop(ev) {
-			ev.preventDefault();
-		}
 
-		function drag(ev) {
-			ev.dataTransfer.setData("text", ev.target.id);
-		}
-
-		function drop(ev) {
-			ev.preventDefault();
-			var data = ev.dataTransfer.getData("text");
-			ev.target.appendChild(document.getElementById(data).cloneNode(true));
-			
-		}
-	</script>
 </head>
 <body>
 <!-- Navigation -->
@@ -148,6 +132,14 @@ $usermail = $_SESSION['usermail'];
                 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 				<br>
 				<ul id="sortable" class="ui-state-highlight">
+				<?php
+				if(isset($_SESSION['cart']))
+				{
+					foreach($_SESSION['cart'] as $value) {
+						echo "<li><img src=img/".$value."></li>";
+					}
+				}
+				?>
 				</ul>
 				<div id="tmp"></div>
             </ul>
