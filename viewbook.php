@@ -16,6 +16,7 @@ $result = mysql_query($books)or die("Error fetching data".mysql_error());
 $bookrow = mysql_fetch_assoc($result);	//create associative array from results based on column name
 $reviews = "select usermail, title, score, review, postdate from books, review where books.isbn=review.booknumber and title='$title' order by postdate;";
 $result2 = mysql_query($reviews);
+$usermail = $_SESSION['usermail'];
 ?>
 <html>
 <head>
@@ -152,11 +153,15 @@ $result2 = mysql_query($reviews);
         </div>
 		<div id="sidebar-wrapper1">
             <ul class="sidebar-nav1">
-                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<br>
-				<ul id="sortable" class="ui-state-highlight">
-				</ul>
-				<div id="tmp"></div>
+            <p>Your Wishlist</p>
+                <?php
+				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
+				$list = mysql_query($wish)or die('No: '.mysql_error());
+				while ($eachbook = mysql_fetch_assoc($list))
+				{
+					echo "<label>".$eachbook['title']."</label>";
+				}
+				?>
             </ul>
         </div>
 	<div id="page-content-wrapper">
