@@ -7,6 +7,12 @@ if ($_SESSION['usermail'] == '')
 }
 $_SESSION['title'] = '';
 $usermail = $_SESSION['usermail'];
+$con = mysql_connect('localhost','root','');
+if (!$con)
+{
+	die("Could not connect to database".mysql_error());
+}
+mysql_select_db('bookstore')or die('Cannot select database bookstore');
 //$usermail = htmlentities($usermail);
 //echo "Your username is ".$_SESSION['usermail']."<br>";
 ?>
@@ -157,11 +163,15 @@ $usermail = $_SESSION['usermail'];
         </div>
 		<div id="sidebar-wrapper1">
             <ul class="sidebar-nav1">
-                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<br>
-				<ul id="sortable" class="ui-state-highlight">
-				</ul>
-				<div id="tmp"></div>
+                <p>Your Wishlist</p>
+				<?php
+				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
+				$list = mysql_query($wish)or die('No: '.mysql_error());
+				while ($eachbook = mysql_fetch_assoc($list))
+				{
+					echo "<label>".$eachbook['title']."</label>";
+				}
+				?>
             </ul>
         </div>
 	<div id="page-content-wrapper">
@@ -170,12 +180,6 @@ $usermail = $_SESSION['usermail'];
 			<div class='container'>
 				<div class='col-md-4'>
 				<?php
-				$con = mysql_connect('localhost','root','');
-				if (!$con)
-				{
-					die("Could not connect to database".mysql_error());
-				}
-				mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				$getbooks = "Select isbn, title, image, price from books order by dateadded";
 				$result = mysql_query($getbooks)or die("Error querying database: ".mysql_error());
 				$incre = 1;
@@ -193,18 +197,9 @@ $usermail = $_SESSION['usermail'];
 				}
 				?>
 				</div>
-				<div class='col-md-4'>
-				<p>Your Wishlist</p>
 				<?php
-				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
-				$list = mysql_query($wish)or die('No: '.mysql_error());
-				while ($eachbook = mysql_fetch_assoc($list))
-				{
-					echo "<label>".$eachbook['title']."</label>";
-				}
 				mysql_close($con);
 				?>
-				</div>
 			</div>
 		</div>
 			<footer>
