@@ -87,7 +87,7 @@
 
 #wrapper1.toggled #page-content-wrapper1 {
     position: absolute;
-    margin-left: -250px;
+    margin-left: 0px;
 }
 
 /* Sidebar Styles */
