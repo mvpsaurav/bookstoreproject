@@ -129,10 +129,10 @@ $usermail = $_SESSION['usermail'];
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="#">Wishlist</a>
+                        <a href="#menu-toggle1" class="btn btn-default" id="menu-toggle1">Wishlist</a>
                     </li>
                     <li>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Shopping Cart</a>
+                        <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">Shopping Cart</a>
                     </li>
 					<li>
 						<a href="bookstorelogout.php">Log Out</a>
@@ -143,7 +143,7 @@ $usermail = $_SESSION['usermail'];
         </div>
         <!-- /.container -->
     </nav>
-	<div id="wrapper">
+	<div id="wrapper" class='toggled'>
 	<!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -157,7 +157,7 @@ $usermail = $_SESSION['usermail'];
 	<div id="page-content-wrapper">	
 		<div class='jumbotron'>
 			<div class='container'>
-				<div>
+				<div class='col-md-4'>
 				<?php
 				$con = mysql_connect('localhost','root','');
 				if (!$con)
@@ -179,6 +179,17 @@ $usermail = $_SESSION['usermail'];
 					echo "<button class='btn btn-info' onclick='addto($isbn,\"$usermail\")'>Add to Wishlist</button><br><br>";
 					echo "<script>$('#edit_errors').html('<h3><em><font color=\"red\">Please Correct Errors Before Proceeding</font></em></h3>')</script>";
 				$incre++;
+				}
+				?>
+				</div>
+				<div class='col-md-4'>
+				<p>Your Wishlist</p>
+				<?php
+				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
+				$list = mysql_query($wish)or die('No: '.mysql_error());
+				while ($eachbook = mysql_fetch_assoc($list))
+				{
+					echo "<label>".$eachbook['title']."</label>";
 				}
 				mysql_close($con);
 				?>
@@ -203,7 +214,11 @@ $usermail = $_SESSION['usermail'];
 
 		<!-- Menu Toggle Script -->
 		<script>
-		$("#menu-toggle").click(function(e) {
+		$("#menu-toggle1").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+		$("#menu-toggle2").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
 		});
