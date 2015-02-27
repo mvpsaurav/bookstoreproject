@@ -124,7 +124,7 @@ $result2 = mysql_query($reviews);
                         <a href="bookstoremain.php">Home</a>
                     </li>
                     <li>
-                        <a href="#">Wishlist</a>
+                        <a href="#menu-toggle1" class="btn btn-default" id="menu-toggle1">Wishlist</a>
                     </li>
                     <li>
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Shopping Cart</a>
@@ -138,7 +138,8 @@ $result2 = mysql_query($reviews);
         </div>
         <!-- /.container -->
     </nav>
-	<div id="wrapper">
+	<div id="wrapper" class='toggled'>
+	<div id="wrapper1" class='toggled'>
 	<!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -149,7 +150,17 @@ $result2 = mysql_query($reviews);
 				<div id="tmp"></div>
             </ul>
         </div>
-<div id="page-content-wrapper">	
+		<div id="sidebar-wrapper1">
+            <ul class="sidebar-nav1">
+                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				<br>
+				<ul id="sortable" class="ui-state-highlight">
+				</ul>
+				<div id="tmp"></div>
+            </ul>
+        </div>
+	<div id="page-content-wrapper">
+	<div id="page-content-wrapper1">	
 
 <div class='container'>
 <div class='jumbotron'>
@@ -218,7 +229,15 @@ mysql_close($con);
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
 		});
+		$("#menu-toggle1").click(function(e) {
+			e.preventDefault();
+			$("#wrapper1").toggleClass("toggled");
+		});
 		</script>
 </footer>
+</div>
+</div>
+</div>
+</div>
 </div>
 </html>
