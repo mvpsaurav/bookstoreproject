@@ -150,11 +150,11 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
         <!-- /.container -->
     </nav>
 	<div id="wrapper" class='toggled'>
-	<div id="wrapper1" class='toggled'>
+	<div id="wrapper1" class=''>
 	<!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h3>Shopping Cart</h3>
             <ul class="sidebar-nav">
-                <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 				<br>
 				<ul id="sortable" class="ui-state-highlight">
 				</ul>
@@ -162,8 +162,8 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
             </ul>
         </div>
 		<div id="sidebar-wrapper1">
+		<h3>Wishlist</h3>
             <ul class="sidebar-nav1">
-                <p>Your Wishlist</p>
 				<?php
 				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
 				$list = mysql_query($wish)or die('No: '.mysql_error());
@@ -179,7 +179,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 	<div id="page-content-wrapper1">	
 		<div class='jumbotron'>
 			<div class='container'>
-				<div class='col-md-4'>
+				<div align='center'>
 				<?php
 				$getbooks = "Select isbn, title, image, price from books order by dateadded";
 				$result = mysql_query($getbooks)or die("Error querying database: ".mysql_error());
@@ -188,12 +188,14 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				{
 					$isbn = $books['isbn'];
 					$title = $books['title'];
+					echo "<div class='panel panel-default' align='center'>";
 					echo "<form action='viewbook.php' method='POST' id = 'myForm".$incre."' name = 'myForm".$incre."'>";
 					echo "<input type = 'hidden' value = '".$books['title']."' name = 'title'></form> ";
 					echo "<p class='lead'><a href='javascript: getTitle(".$incre.")'>".$books['title']."</a></p>";
 					echo "<div id= '".$books['title']."' draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$books['image']."' width='150' height='200' alt='a book'></div>";
 					echo "<p>Price: $".$books['price']."</p>";
 					echo "<button class='btn btn-info' onclick='addto(\"$isbn\",\"$usermail\",\"$title\")'>Add to Wishlist</button><br><br>";
+					echo "</div>";
 					//echo "<script>$('#edit_errors').html('<h3><em><font color=\"red\">Please Correct Errors Before Proceeding</font></em></h3>')</script>";
 				$incre++;
 				}
