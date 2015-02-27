@@ -75,7 +75,7 @@ function addto(isbn, user, title)
 	xmlhttp.open('POST',"bookstoreadd.php",true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(params);
-	alert('Sent');
+	alert('Added to wishlist!');
 	var newbook = document.createElement('label');
 	newbook.innerHTML = title;
 	document.getElementById('wishlistbar').appendChild(newbook);

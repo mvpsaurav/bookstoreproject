@@ -169,7 +169,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					echo "<label>".$eachbook['title']."</label><br>";
+					echo "-><label>".$eachbook['title']."</label><br>";
 				}
 				?>
 				<div id='wishlistbar'></div>

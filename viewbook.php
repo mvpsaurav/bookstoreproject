@@ -31,6 +31,7 @@ $usermail = $_SESSION['usermail'];
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link href="css/bookstore.css" rel="stylesheet" />
 <script src="js/bookstore.js"></script>
+<script>alert("Shopping cart cleared.");</script>
 <link href="css/shop-item.css" rel="stylesheet">
 <link href="css/simple-sidebar.css" rel="stylesheet">
 	
@@ -159,7 +160,7 @@ $usermail = $_SESSION['usermail'];
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					echo "<label>".$eachbook['title']."</label><br>";
+					echo "-><label>".$eachbook['title']."</label><br>";
 				}
 				?>
 				<div id='wishlistbar'></div>
@@ -171,12 +172,15 @@ $usermail = $_SESSION['usermail'];
 <div class='container'>
 <div class='jumbotron'>
 <h1><?php echo $title; ?></h1>
+<?php
+$isbn = $bookrow['isbn'];
+?>
 <p class='lead'>By <?php echo $bookrow['author']."  Category: ".$bookrow['category']; ?></p>
 <?php echo "<div id='".$title."'draggable='true' droppable='true' ondragstart='drag(event);'><img src='img/".$bookrow['image']."' width='450' height='600'></div>";?>
 <p><?php echo $bookrow['summary'];?></p>
 <p>$<?php echo $bookrow['price'];?></p>
 <small>Added on <?php echo $bookrow['dateadded'];?></small><br>
-<button type='button' class='btn btn-info'>Add to Wishlist</button>
+<?php echo "<button type='button' class='btn btn-info' onclick='addto(\"$isbn\",\"$usermail\",\"$title\")'>Add to Wishlist</button>"; ?>
 <br><br>
 <p>Reviews for <?php echo $title;?></p>
 <?php
