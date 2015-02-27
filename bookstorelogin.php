@@ -27,6 +27,7 @@ if( !empty($_SESSION['username']) ){
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/bookstore.js"></script>
 </head>
+
 <body>
 <div align='center'>
 <h2></h2>
@@ -67,6 +68,9 @@ if (!empty($_SESSION['account']))
         </div>
         <!-- /.container -->
     </nav>
+
+<center>
+
 <div class='col-md-4'>
 <div class='panel panel-default'>
 <div class='panel-heading'><h3 class='panel-title'><strong>Log In</strong></h2></div>
@@ -79,6 +83,8 @@ if (!empty($_SESSION['account']))
 </div>
 </div>
 </div>
+
+<br>
 
 <div class='col-md-4'>
 <div class='panel panel-default'>
@@ -94,6 +100,7 @@ if (!empty($_SESSION['account']))
 </div>
 </div>
 
+</center>
 
 </div>
 </div>
