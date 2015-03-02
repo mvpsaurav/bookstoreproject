@@ -56,15 +56,35 @@ function getXMLHttpObject()
 
 function addto(isbn, user, title)
 {
-	xmlhttp = getXMLHttpObject(); //create
+	var xmlhttp = getXMLHttpObject(); //create
 	var params = "isbn="+isbn+"&user="+user+"&sid="+Math.random();
 	xmlhttp.open('POST',"bookstoreadd.php",true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(params);
 	alert('Added to wishlist!');
+	var newdiv = document.createElement('div');
 	var newbook = document.createElement('label');
+	newdiv.setAttribute('id',title);
+	var but = document.createElement('button'); //create the X button
+	but.innerHTML = 'x';
+	but.setAttribute('onclick','removefrom(isbn,user,title)');
+	but.setAttribute('class','close');
+	newbook.appendChild(but);
 	newbook.innerHTML = title;
 	document.getElementById('wishlistbar').appendChild(newbook);
+}
+
+function removefrom(isbn, user, title)
+{
+	var xmlhttp = getXMLHttpObject();
+	var params = "isbn="+isbn+'&user='+user+'&sid='+Math.random();
+	xmlhttp.open('POST','bookstoreremove.php',true);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlhttp.send(params);
+	alert('Removed from wishlist!');
+	var removed = document.getElementById(title);
+	//console.log(removed);
+	removed.parentNode.removeChild(removed);
 }
 
 function allowDrop(ev) {

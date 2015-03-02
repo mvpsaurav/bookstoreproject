@@ -55,9 +55,9 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
     <![endif]-->
 	<script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script>
+	/*
 		$(document).ready(function() {
 		$tmp = $("#tmp").get(0);
-		
 		$("#sortable").sortable({
 			start: function(event, ui) {
 			},
@@ -66,7 +66,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				console.log("resultHTML : ", jQuery.data($tmp, "resultHTML"));
 			}
 		});
-
+		
 		$("#draggable li").draggable({
 			connectToSortable: "#sortable",
 			start: function(event, ui) {    
@@ -82,6 +82,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 			revert: "invalid"
 		});
 	});
+	*/
 	</script>
 	<style>
 		#div1 {
@@ -155,13 +156,15 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
         </div>
 		<div id="sidebar-wrapper1">
 		<li><h3>Wishlist</h3></li>
-            <ul class="sidebar-nav1">
+            <ul class="sidebar-nav1" name='yourwishlist'>
 				<?php
 				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					echo "-><label>".$eachbook['title']."</label><br>";
+					$title = $eachbook['title'].'2';
+					$isbn = $eachbook['isbn'];
+					echo "<div id=\"$title\"><label>".$eachbook['title']."</label><button class='close' onclick='removefrom(\"$isbn\",\"$usermail\",\"$title\");'>x</button></div>";
 				}
 				?>
 				<div id='wishlistbar'></div>
