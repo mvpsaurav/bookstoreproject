@@ -151,9 +151,9 @@ $usermail = $_SESSION['usermail'];
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					$title = $eachbook['title'].'2';
+					$titlex = $eachbook['title'].' ';
 					$isbn = $eachbook['isbn'];
-					echo "<div id=\"$title\"><label>".$eachbook['title']."</label><button class='close' onclick='removefrom(\"$isbn\",\"$usermail\",\"$title\");'>x</button></div>";
+					echo "<div id=\"$title\"><label>".$eachbook['title']."</label><button class='close' onclick='removefrom(\"$isbn\",\"$usermail\",\"$titlex\");'>x</button></div>";
 				}
 				?>
 				<div id='wishlistbar'></div>
@@ -205,7 +205,6 @@ mysql_close($con);
 <?php echo "<input type='hidden' name='isbn' id='isbn' value='".$bookrow['isbn']."'>"; ?>
 <button class='btn btn-default' type='submit'>Submit</button>
 </form>
-<a href='bookstoremain.php'><-Back</a>
 </div>
 </div>
 

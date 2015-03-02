@@ -162,7 +162,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					$title = $eachbook['title'].'2';
+					$title = $eachbook['title'].' ';
 					$isbn = $eachbook['isbn'];
 					echo "<div id=\"$title\"><label>".$eachbook['title']."</label><button class='close' onclick='removefrom(\"$isbn\",\"$usermail\",\"$title\");'>x</button></div>";
 				}
