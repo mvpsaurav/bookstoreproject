@@ -145,13 +145,15 @@ $usermail = $_SESSION['usermail'];
         </div>
 		<div id="sidebar-wrapper1">
 		<li><h3>Wishlist</h3> </li>
-            <ul class="sidebar-nav1">
+            <ul class="sidebar-nav1" id='yourwishlist'>
                 <?php
 				$wish = "select isbn, title from books, wishlist where books.isbn=wishlist.booknumber and usermail='$usermail';";
 				$list = mysql_query($wish)or die('No: '.mysql_error());
 				while ($eachbook = mysql_fetch_assoc($list))
 				{
-					echo "-><label>".$eachbook['title']."</label><br>";
+					$title = $eachbook['title'].'2';
+					$isbn = $eachbook['isbn'];
+					echo "<div id=\"$title\"><label>".$eachbook['title']."</label><button class='close' onclick='removefrom(\"$isbn\",\"$usermail\",\"$title\");'>x</button></div>";
 				}
 				?>
 				<div id='wishlistbar'></div>
