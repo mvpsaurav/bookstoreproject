@@ -55,8 +55,19 @@ if( !empty($_SESSION['username']) ){
     </nav>
 
 <center>
-<div class=''>
-
+<div>
+<?php
+if (!empty($_SESSION['error']))
+{
+	echo "<div class='container error'><div class='alert alert-danger'>".$_SESSION['error']."</div></div><br>";
+	$_SESSION['error'] = '';
+}
+if (!empty($_SESSION['account']))
+{
+	echo "<div class='container error'><div class='alert alert-success'>".$_SESSION['account']."</div></div><br>";
+	$_SESSION['account'] = '';
+}
+?>
 <div>
 <div class='panel panel-default'>
 <div class='panel-heading'><h3 class='panel-title'><strong>Log In</strong></h2></div>
@@ -89,18 +100,6 @@ if( !empty($_SESSION['username']) ){
 </div>
 </center>
 
-<?php
-if (!empty($_SESSION['error']))
-{
-	echo "<div class='container error'><div class='alert alert-danger'>".$_SESSION['error']."</div></div><br>";
-	$_SESSION['error'] = '';
-}
-if (!empty($_SESSION['account']))
-{
-	echo "<div class='container error'><div class='alert alert-success'>".$_SESSION['account']."</div></div><br>";
-	$_SESSION['account'] = '';
-}
-?>
 </div>
 </body>
 </html>
