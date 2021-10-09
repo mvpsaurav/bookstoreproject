@@ -2,8 +2,8 @@ var xmlhttp;
 
 function validateLogin()
 {
-	var usermail = document.getElementById('mainusermail').value;
-	var password = document.getElementById('mainpassword').value;
+	let usermail = document.getElementById('mainusermail').value;
+	const password = document.getElementById('mainpassword').value;
 	if (usermail == '' || password == '')
 	{
 		alert('Make sure all fields are filled in before continuing');
@@ -76,13 +76,13 @@ function addto(isbn, user, title)
 
 function removefrom(isbn, user, title)
 {
-	var xmlhttp = getXMLHttpObject();
-	var params = "isbn="+isbn+'&user='+user+'&sid='+Math.random();
+	let xmlhttp = getXMLHttpObject();
+	let params = "isbn="+isbn+'&user='+user+'&sid='+Math.random();
 	xmlhttp.open('POST','bookstoreremove.php',true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(params);
 	alert('Removed from wishlist!');
-	var removed = document.getElementById(title);
+	let removed = document.getElementById(title);
 	//console.log(removed);
 	removed.parentNode.removeChild(removed);
 }
@@ -105,7 +105,7 @@ function drop(ev) {
 
 function updoot(cart){
 	xmlhttp = getXMLHttpObject();
-	var params = "cart="+cart+"&sid="+Math.random();
+	let params = "cart="+cart+"&sid="+Math.random();
 	xmlhttp.open('POST',"cartadd.php",true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(params);
